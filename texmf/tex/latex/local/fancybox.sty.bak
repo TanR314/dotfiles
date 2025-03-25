@@ -1,0 +1,209 @@
+%==================================================%
+%==========          TEMPLATE          ============%
+%==================================================%
+
+% \tcbset{
+% 	enhanced jigsaw,
+% 	boxrule=0pt,
+% 	leftrule=4pt,
+% 	arc=6pt,
+% 	left=9pt,
+% 	after skip=15pt,
+% 	before skip=15pt
+% }
+
+% \renewtcblisting{lstlisting}{
+% 	title=\sffamily\bfseries Source Code,
+% 	boxrule=2pt,
+% 	listing only,
+% 	left=7mm,
+% 	top=0pt,
+% 	breakable,
+% 	listing options={basicstyle=\ttfamily,columns=flexible,numbers=left,numberstyle=\sffamily}
+% 	% numbers=left,numberstyle=\sffamily\color{gray},
+% 	% }
+% }
+%
+%
+% \declaretheoremstyle[
+% 	headfont=\sffamily\bfseries\color{MidnightBlue},
+% 	headpunct={\\[3pt]},
+% 	postheadspace=0pt
+% ]{thmbluebox}
+% \declaretheoremstyle[
+% 	headfont=\bfseries\color{RawSienna},
+% 	headpunct={\\[3pt]}
+% ]{thmorangebox}
+% \declaretheoremstyle[
+% 	headfont=\sffamily\bfseries\color{Teal!80!black},
+% 	headpunct={.}
+% ]{thmtealbox}
+% \declaretheoremstyle[
+% 	headfont=\bfseries,
+% 	headpunct={.}
+% ]{thmblackbox}
+% \declaretheoremstyle[
+% 	headfont=\hypersetup{urlcolor=SteelBlue!25!RoyalPurple}\sffamily\bfseries\color{SteelBlue},
+% 	headpunct={\\[3pt]},
+% ]{thmsteelbox}
+% \declaretheoremstyle[
+% 	headfont=\hypersetup{urlcolor=RoyalPurple!25!RoyalBlue}\sffamily\bfseries\color{RoyalPurple},
+% 	headpunct={\\[3pt]}
+% ]{thmpurplebox}
+%
+%
+%
+% \newcommand{\tcbbluetheorem}[3]{
+% 	\theoremstyle{thmbluebox}
+% 	\newtheorem{#1}{#2}[#3]
+% 	\newtheorem*{#1*}{#2}
+% 	\tcolorboxenvironment{#1}{
+% 		colback=CornflowerBlue!5,colframe=RoyalBlue
+% 	}
+% 	\tcolorboxenvironment{#1*}{
+% 		colback=CornflowerBlue!5,colframe=RoyalBlue
+% 	}
+% }
+%
+% \newcommand{\tcbtealtheorem}[3]{
+% 	\theoremstyle{thmtealbox}
+% 	\newtheorem{#1}{#2}[#3]
+% 	\newtheorem*{#1*}{#2}
+% 	\tcolorboxenvironment{#1}{
+% 		colback=Teal!5,colframe=Teal,left=5pt,
+% 	}
+% 	\tcolorboxenvironment{#1*}{
+% 		colback=Teal!5,colframe=Teal,left=5pt
+% 	}
+% }
+%
+% \newcommand{\tcborangetheorem}[3]{
+% 	\theoremstyle{thmorangebox}
+% 	\newtheorem{#1}{#2}[#3]
+% 	\newtheorem*{#1*}{#2}
+% 	\tcolorboxenvironment{#1}{
+% 		colback=Salmon!5,colframe=RawSienna,
+% 		boxrule=1pt,
+% 	}
+% 	\tcolorboxenvironment{#1*}{
+% 		colback=Salmon!5,colframe=RawSienna,
+% 		boxrule=1pt,
+% 	}
+% }
+%
+% \newcommand{\tcbblacktheorem}[3]{
+% 	\theoremstyle{thmblackbox}
+% 	\newtheorem{#1}{#2}[#3]
+% 	\newtheorem*{#1*}{#2}
+% 	\tcolorboxenvironment{#1}{
+% 		colback=RedViolet!5!gray!5,
+% 		colframe=black
+% 	}
+% 	\tcolorboxenvironment{#1*}{
+% 		colback=RedViolet!5!gray!5,
+% 		colframe=black
+% 	}
+% }
+%
+% \newcommand{\tcbsteeltheorem}[3]{
+% 	\theoremstyle{thmsteelbox}
+% 	\newtheorem{#1}{#2}[#3]
+% 	\newtheorem*{#1*}{#2}
+% 	\tcolorboxenvironment{#1}{
+% 		colback=SteelBlue!5,
+% 		colframe=SteelBlue,
+% 		boxrule=2pt,
+% 	}
+% 	\tcolorboxenvironment{#1*}{
+% 		colback=SteelBlue!5,
+% 		colframe=SteelBlue
+% 	}
+% }
+
+
+
+% \tcbbluetheorem{theorem}{Theorem}{section}
+% \tcbbluetheorem{lemma}{Lemma}{section}
+% \tcborangetheorem{example}{Example}{section}
+% \tcbblacktheorem{remark}{Remark}{section}
+% \tcbsteeltheorem{problem}{Problem}{section}
+% \tcbtealtheorem{intuition}{Intuition}{chapter}
+% \declaretheoremstyle[
+% 	headfont=\color{Teal!85!black}\bfseries,
+% 	bodyfont=\itshape,
+% 	% skipabove=80pt,
+% ]{definition}
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}[section]
+% \declaretheoremstyle[
+% headfont=\color{RoyalBlue!85!black}\bfseries\sffamily
+% ]{solution}
+% \theoremstyle{solution}
+% \newtheorem{solution}{Solution}[section]
+% \newtheorem*{solution*}{Solution}
+
+
+
+
+
+
+
+
+
+
+%==================================================%
+%=========        Otis Solutions        ===========%
+%==================================================%
+
+% \tcbtealtheorem{claim}{Claim}{}
+% \tcbblacktheorem{remark}{Remark}{}
+%
+%
+% \tcbsteeltheorem{problem}{Problem}{}
+% \declaretheorem[style=thmpurplebox,sibling=problem,name=Required Problem]{reqproblem}
+% \tcolorboxenvironment{reqproblem}{
+%   colback=RoyalPurple!5,
+%   colframe=RoyalPurple,
+%   boxrule=2pt,
+% }
+% \tcolorboxenvironment{reqproblem*}{
+%   colback=RoyalPurple!5,
+%   colframe=RoyalPurple
+% }
+%
+%
+% % \tcbpurpletheorem{reqproblem}{Required Problem}{}
+% \tcborangetheorem{example}{Example}{}
+% \declaretheoremstyle[
+% 	headfont=\color{Teal!85!black}\bfseries,
+% 	bodyfont=\itshape,
+% 	% skipabove=80pt,
+% ]{definition}
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}[]
+% \declaretheoremstyle[
+% headfont=\color{RoyalBlue!85!black}\bfseries\sffamily,
+% ]{solution}
+% \theoremstyle{solution}
+% \newtheorem{solution}{Solution}[]
+% \newtheorem*{solution*}{Solution}
+%
+%
+% \NewDocumentEnvironment{prob}{oo}{
+%   \IfNoValueTF{#1}{
+%   }{
+%     \setcounter{problem}{#1}
+%     \addtocounter{problem}{-1}
+%   }
+%   \begin{problem}[#2]
+% }{\end{problem}}
+%
+%
+% \NewDocumentEnvironment{reqprob}{oo}{
+%   \IfNoValueTF{#1}{
+%   }{
+%     \setcounter{problem}{#1}
+%     \addtocounter{problem}{-1}
+%   }
+%   \begin{reqproblem}[#2]
+% }{\end{reqproblem}}

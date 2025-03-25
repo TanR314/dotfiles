@@ -1,0 +1,75 @@
+\newcommand{\key}[1]{\textbf{\sffamily\color{SteelBlue!75!black}{#1}}}
+% ================ Fancy Boxes ================== %
+
+
+% PROBLEMS
+\tcbthmstyle{thmbluebox}{MidnightBlue}{\sffamily}{}
+\tcbthmstyle{thmpurplebox}{RoyalPurple}{\sffamily}{}
+
+\tcbtheorem{prob}{Problem}{}{CornflowerBlue}{RoyalBlue}{thmbluebox}
+\tcbtheorem{reqprob}{Required Problem}{sibling=prob}{RoyalPurple}{RoyalPurple}{thmpurplebox}
+
+\NewDocumentEnvironment{problem}{oo}{
+  \IfNoValueTF{#2}{
+  }{
+    \setcounter{prob}{#2}
+    \addtocounter{prob}{-1}
+  }
+  \begin{prob}[#1]
+}{\end{prob}}
+
+\NewDocumentEnvironment{reqproblem}{oo}{
+  \IfNoValueTF{#2}{
+  }{
+    \setcounter{reqprob}{#2}
+    \addtocounter{reqprob}{-1}
+  }
+  \begin{reqprob}[#1]
+}{\end{reqprob}}
+
+
+% SOLUTIONS
+
+\declaretheoremstyle[
+headfont=\color{RoyalBlue!85!black}\bfseries\sffamily
+]{solution}
+\theoremstyle{solution}
+\newtheorem{solution}{Solution}[prob]
+\newtheorem*{solution*}{Solution}
+
+
+% CLAIM
+
+\tcbthmstyle{thmtealbox}{Teal}{\sffamily}{bodyfont=\sffamily}
+\tcblefttheorem{claim}{Claim}{}{Teal}{Teal}{thmtealbox}
+
+
+% REMARK
+
+\tcbthmstyle{thmblackbox}{black}{}{}
+\tcblefttheorem{remark}{Remark}{}{RedViolet!5!gray}{black}{thmblackbox}
+
+
+% -----------------------------x-------------------------------%
+
+
+
+
+
+
+\begin{asydef}
+size(7cm);  
+\end{asydef}
+
+\providecommand{\ol}{\overline}
+\providecommand{\arc}{\widehat}
+\newcommand{\arch}{
+  \begin{remark*}
+    I used arch to solve this problem.
+  \end{remark*}
+}
+
+
+
+
+\pagestyle{plain}

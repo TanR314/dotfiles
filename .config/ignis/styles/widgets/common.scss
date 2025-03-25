@@ -1,0 +1,98 @@
+.slider {
+  min-height: 6px;
+  trough {
+    min-height: 6px;
+    highlight {
+      background: $primary;
+      border-radius: 10px;
+    }
+    background: $surfaceContainerHighest;
+    border-radius: 10px;
+  }
+
+  slider {
+    background: $primary;
+    margin: -8px -2px;
+    min-height: 16px;
+    min-width: 4px;
+    border-radius: 100px;
+  }
+  // slider:hover {
+  //   background: red;
+  // }
+}
+
+
+
+
+
+
+.SlidePopupWindow {
+  margin-top: 0px;
+  padding: 20px 15px;
+  background: $background;
+  border-radius: 30px;
+  box-shadow: 0px 0px 3px 1px #0005 inset;
+  border: 1px solid $surfaceContainer;
+  color: $onBackground;
+}
+
+
+
+
+
+
+
+
+.PopupWindowContainer {
+  box-shadow: 0px 0px 0px 10px black;
+}
+
+
+.PopupWindow {
+  margin-top: 0px;
+  // padding: 20px 15px;
+  padding: 15px;
+  background: $background;
+  border-radius: 20px;
+  box-shadow: 0px 0px 3px 1px #0005 inset;
+  border: 1px solid $surfaceContainer;
+  color: $onBackground;
+}
+
+
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+tooltip {
+  &.background {
+    // background-color needs to be set this way otherwise it gets drawn twice
+    // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
+    background-color: rgba($onBackground,0.99);
+    background-clip: padding-box;
+    box-shadow: 0px 0px 3px 1px #0005 inset;
+    color: $background;
+  }
+
+  padding: 6px 10px;
+  border-radius: 100pt;
+  box-shadow: none; // otherwise it gets inherited by windowframe.csd
+
+  > box {
+    border-spacing: 6px;
+  }
+
+  animation-name: appear;
+  animation-duration: 100ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+
+}

@@ -1,0 +1,88 @@
+from ignis.widgets import Widget
+from ignis.services.notifications import NotificationService
+
+notifications = NotificationService.get_default()
+
+
+
+
+
+class NotificationWidget(Widget.Box):
+    def __init__(self, notification):
+
+        super().__init__(
+            css_classes=["notification"],
+            child=[
+                Widget.Icon(
+                    image=notification.bind(
+                        "icon",
+                        lambda x:
+                            x if x else "telegram"
+                    ),
+                    pixel_size = 40,
+                    css_classes=["notification-icon"]
+                ),
+                Widget.Box(
+                    vertical=True,
+                    hexpand=True,
+                    css_classes=["notification-description"],
+                    child=[
+                        Widget.Label(
+                            vexpand=False,
+                            valign="center",
+                            halign="start",
+                            label=notification.bind("summary"),
+                            max_width_chars=25,ellipsize='end',
+                            wrap_mode='word_char',
+                            css_classes=["notification-title"]
+                        ),
+                        Widget.Label(
+                            vexpand=False,
+                            valign="center",
+                            halign="start",
+                            label=notification.bind("body"),
+                            max_width_chars=40,ellipsize='end',
+                            wrap_mode='word_char',
+                            css_classes=["notification-body"]
+                        )
+                    ]
+                )
+
+            ]
+        )
+
+
+
+
+
+
+
+
+
+
+
+
+class NotificationContainer(Widget.Box):
+    def __init__(self, notifications):
+        self.notifications = notifications
+
+
+
+        super().__init__(
+            vertical=True,
+            child=[
+                Widget.Box(
+                    child=[
+                        Widget.Label(label=self.notifications[0].app_name),
+                    ]
+                ),
+                Widget.Box(
+                    vertical=True,
+                    child=[
+                        NotificationWidget(notification)
+                        for notification in notifications
+                    ]
+                )
+            ]
+
+        )

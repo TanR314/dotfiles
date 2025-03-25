@@ -1,0 +1,110 @@
+from ignis.utils import Utils
+import os
+import sys
+from timeit import default_timer
+
+from materialyoucolor.utils.color_utils import rgba_from_argb
+from materialyoucolor.quantize import QuantizeCelebi
+from materialyoucolor.score.score import Score
+from materialyoucolor.hct import Hct
+from materialyoucolor.dynamiccolor.material_dynamic_colors import MaterialDynamicColors
+
+
+scheme = sys.argv[3]
+# if scheme == ""
+# from materialyoucolor.scheme.scheme_vibrant import SchemeVibrant
+# from materialyoucolor.scheme.scheme_tonal_spot import SchemeTonalSpot
+# from materialyoucolor.scheme.
+# from schemes.scheme_morevibrant import SchemeMoreVibrant
+
+
+if scheme == 'fruitsalad':
+    from materialyoucolor.scheme.scheme_fruit_salad import SchemeFruitSalad as Scheme
+elif scheme == 'expressive':
+    from materialyoucolor.scheme.scheme_expressive import SchemeExpressive as Scheme
+elif scheme == 'monochrome':
+    from materialyoucolor.scheme.scheme_monochrome import SchemeMonochrome as Scheme
+elif scheme == 'rainbow':
+    from materialyoucolor.scheme.scheme_rainbow import SchemeRainbow as Scheme
+elif scheme == 'tonalspot':
+    from materialyoucolor.scheme.scheme_tonal_spot import SchemeTonalSpot as Scheme
+elif scheme == 'neutral':
+    from materialyoucolor.scheme.scheme_neutral import SchemeNeutral as Scheme
+elif scheme == 'fidelity':
+    from materialyoucolor.scheme.scheme_fidelity import SchemeFidelity as Scheme
+elif scheme == 'content':
+    from materialyoucolor.scheme.scheme_content import SchemeContent as Scheme
+elif scheme == 'vibrant':
+    from materialyoucolor.scheme.scheme_vibrant import SchemeVibrant as Scheme
+else:
+    from schemes.scheme_morevibrant import SchemeMoreVibrant as Scheme
+
+
+
+
+
+
+
+
+
+from PIL import Image
+def Update():
+    MAX_COLOR = 128
+
+
+    rgba_to_hex = lambda rgba: "#{:02X}{:02X}{:02X}{:02X}".format(*map(round, rgba))
+
+
+    start = default_timer()
+
+
+
+    def dynamic_scheme(scheme_class):
+        FILENAME=sys.argv[1]
+        quality=int(sys.argv[2])
+        # OUTPUTSCSSFILE="~/.config/ignis/styles/material/colors.scss"
+        # OUTPUTSCSSFILE=sys.argv[3]
+    
+
+        image = Image.open(FILENAME)
+
+        pixel_len = image.width * image.height
+        image_data = image.getdata()
+
+        pixel_array = [image_data[_] for _ in range(0, pixel_len, quality)]
+        colors = QuantizeCelebi(pixel_array, MAX_COLOR)
+        selected = Score.score(colors)
+
+        # print("\nDynamic Schemes from top color:\n")
+
+        # print(str(scheme_class).split(".")[-1][:-2])
+        color = rgba_to_hex(rgba_from_argb(selected[0]))[:-2]
+        contrast = 0
+        scheme_l = scheme_class(Hct.from_int(selected[0]), False, contrast)
+        scheme_d = scheme_class(Hct.from_int(selected[0]), True, contrast)
+        
+        ScssContents = ""
+
+        for color in vars(MaterialDynamicColors).keys():
+            __ = getattr(MaterialDynamicColors, color)
+
+            if hasattr(__, "get_hct"):
+                ScssContents = ScssContents + "\\$" + color + ":" + rgba_to_hex(__.get_hct(scheme_d).to_rgba())[:-2] + ";"
+
+        # scssFile = os.path.expanduser(OUTPUTSCSSFILE)
+        # Utils.exec_sh("echo \"" + ScssContents + "\" > " + scssFile)
+        print(ScssContents)
+
+
+
+
+    SWWW_CACHE_FILE = os.path.expanduser("~/.cache/swww/eDP-1")
+    # dynamic_scheme(Utils.exec_sh("cat " + SWWW_CACHE_FILE).stdout,SchemeTonalSpot)
+    # dynamic_scheme(SchemeMoreVibrant)
+    dynamic_scheme(Scheme)
+
+    # dynamic_scheme(SchemeVibrant)
+
+    end = default_timer()
+    # print("Took: ", end - start, "secs")
+Update()

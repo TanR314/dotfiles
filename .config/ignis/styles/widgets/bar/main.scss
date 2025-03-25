@@ -1,0 +1,149 @@
+@use 'sass:color';
+@use '../../utils' as utils;
+
+.bar {
+  background: $background;
+  // background: rgba($background, 0.9);
+  padding: 5px 20px;
+  color: $onBackground;
+
+
+  .panel-button {
+    padding: 5px 8px;
+    background: $surfaceContainer;
+    border-radius: 20px;
+    border: 1px solid $surfaceContainerHigh;
+    transition: all 0.1s;
+  }
+
+
+  .panel-button.activated {
+    background: $primary;
+    color: $onPrimary;
+    border: 1px solid $primary;
+  }
+
+
+
+
+
+  // Workspaces
+
+  .workspace-button {
+    font-size: 0px;
+    min-width: 5pt;
+    min-height: 5pt;
+    border-radius: 5pt;
+    margin: 0 3pt;
+    transition: all 0.1s ease-in-out;
+    background: $surfaceVariant;
+
+
+    &.occupied-workspace {
+      background-color: color.mix($onSurfaceVariant,darkgray, 50);
+      // min-width: 7pt;
+      // min-height: 7pt;
+    }
+
+    &.active-workspace {
+      background-color: $primary;
+      // min-width: 20pt;
+      // min-height: 12pt;
+      min-width: 20pt;
+      min-height: 9pt;
+    }
+  }
+
+
+  // Systray
+  .tray {
+    margin-right: 8px;
+    .tray-item {
+      margin-right: 3px;
+      &:last-child {
+        margin-right: 0px;
+      }
+      .menu {
+        arrow {
+          background: $surfaceContainer; // For error fixing, although I disabled arrow from the menu ( I don't why I said I disabled, actually I didn't disable arrows, maybe I planned to disable it later )
+        }
+        contents {
+          background: rgba($background, 0.99);
+          padding: 5pt;
+          border-radius: 15px;
+          box-shadow: 0px 0px 0px 1px $surfaceContainer inset;
+          border: 2px solid $surfaceContainer;
+        }
+        contents modelbutton {
+          margin: 2pt;
+          padding: 3pt;
+          border-radius: 6pt;
+          transition: all 0.05s;
+          &:hover {
+            background-color: $surfaceContainerHigh;
+            transition: all 0.05s;
+          }
+          &:active {
+            transition: all 0.05s;
+            background-color: $primary;
+            // font-weight: bold;
+            color: $onPrimary;
+          }
+        }
+      }
+
+    }
+  }
+
+
+
+
+
+
+  .Battery {
+    margin-left: 8px;
+    .battery-icon {
+      margin-right: 2pt;
+      &.charging {
+        color: $primary;
+      }
+      &.low {
+        color: $error;
+      }
+    }
+
+    .battery-bar {
+      min-height: 12pt;
+      min-width: 50pt;
+      border-radius: 6pt;
+      background-color: $surfaceContainer;
+
+      .block {
+        min-height: 12pt;
+        transition: min-width 0.3s;
+      }
+      $i: 0;
+      @while $i <= 100 {
+        &.battery-level-#{$i} .block {
+          min-width: ($i/2) + pt; /* Calculate width as 100 - i */
+        }
+        $i: $i + 10;
+      }
+      $j: 1;
+      $warning: 3;
+
+      @while $j <= 10 {
+        &.battery-level-#{($j*10)} .block {
+          background: linear-gradient(to right, utils.make-gradient(color.mix($primary,$surface,80),$primary, $j,10));
+          // background: linear-gradient(to right, utils.make-gradient(color.mix($secondary,$surface,80),$secondary, $j,10));
+        }
+        $j: $j + 1;
+      }
+      &.low .block {
+        background: $error;
+      }
+    }
+  }
+
+
+}

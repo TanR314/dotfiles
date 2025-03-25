@@ -1,0 +1,91 @@
+from ignis.widgets import Widget
+def MyPlayer(player):
+    return Widget.Box(
+        style="background-color: #133;min-width:300px;color:white;padding:5px;border-radius:12px;margin:10px;",
+        valign="center",
+        child=[
+            Widget.Box(
+                style=player.bind(
+                    "art_url",
+                    lambda x:
+                        f'''
+                        min-width: 150px;
+                        min-height: 150px;
+                        background-image: url('file:///{x}');
+                        border-radius: 10px;
+                        background-size: cover;
+                        background-position: center;
+                        '''
+                )
+            ),
+
+            Widget.CenterBox(
+                vertical=True,
+                hexpand=True,
+                start_widget=Widget.Box(
+                    vertical=True,
+                    child=[
+                        Widget.Box(
+                            child=[
+                                Widget.Label(label=player.bind("title"), max_width_chars=30,ellipsize='end'),
+                                # have to add the application icon later
+                            ]
+                        ),
+                        Widget.Label(label=player.bind("artist"),halign="start"),
+                    ]
+                ),
+                end_widget=Widget.Box(
+                    vertical=True,
+                    child=[
+                        Widget.Scale(
+                            value=player.bind("position"),
+                            max=player.bind("length"),
+                            hexpand=True,
+                            on_change=lambda x: player.set_position(x.value),
+                            visible=player.bind(
+                                "position", lambda value: value != -1
+                            ),
+                        ),
+                        Widget.CenterBox(
+                            start_widget=Widget.Label(label="2:26"),
+                            center_widget=Widget.Box(
+                                child=[
+                                    Widget.Button(
+                                        child=Widget.Icon(
+                                            image="media-skip-backward-symbolic"
+                                        ),
+                                        on_click=lambda x: player.previous(),
+                                        visible=player.bind(
+                                            "can_go_previous"
+                                        )
+                                    ),
+                                    Widget.Button(
+                                        child=Widget.Icon(
+                                            image=player.bind(
+                                                "playback_status",
+                                                lambda x:
+                                                    "media-playback-pause-symbolic" if x=="Playing"
+                                                    else "media-playback-start-symbolic"
+                                            )
+                                        ),
+                                        on_click=lambda x: player.play_pause()  
+                                    ),
+                                    Widget.Button(
+                                        child=Widget.Icon(
+                                            image="media-skip-forward-symbolic"
+                                        ),
+                                        on_click=lambda x: player.next(),  
+                                        visible=player.bind(
+                                            "can_go_next"
+                                        )
+                                    ),
+                                ]
+                            ),
+                            end_widget=Widget.Label(label="3:28")
+                        )
+                    ]
+                )
+            )
+
+        ]
+    )

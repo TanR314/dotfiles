@@ -1,0 +1,18 @@
+theme = dark:ayu,light:catppuccin-latte
+background-opacity=0.80
+
+
+
+
+window-decoration=false
+window-padding-x=0
+window-padding-y=0,0
+
+
+
+
+
+
+
+
+font-size=13

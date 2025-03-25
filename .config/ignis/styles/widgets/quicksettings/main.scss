@@ -1,0 +1,35 @@
+
+.quicksettingspopup {
+  // margin-right: -200px;
+  // background: red;
+}
+.quicksettings {
+  // margin-left: 200px;
+  min-width: 350px;
+  .quicksettings-container {
+    background: $surfaceContainerLow;
+    padding: 12px 12px;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+    // .slider 
+  }
+
+
+  .quicksettings-slider {
+    margin-bottom: 12px;
+    &:last-child {
+      margin-bottom: 0px;
+    }
+    .quicksettings-slider-icon {
+      margin-right: 10px;
+    }
+  }
+
+  @import "./player.scss";
+}
+
+
+

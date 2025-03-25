@@ -1,0 +1,586 @@
+\usepackage{asymptote}
+
+\begin{asydef}
+  defaultpen(fontsize(10pt));
+  usepackage("amsmath");
+  usepackage("amssymb");
+  import geometry;
+  import x11colors;
+  import texcolors;
+  size(5cm);
+  pen bpp = linewidth(0.8mm);
+  pen cpp = SkyBlue;
+  pen lpp = purple;
+
+
+
+  // Draw Points
+  string[] arrayofpointnames;
+  pair[] arrayofpoints;
+  pair[] arrayofpointlocations;
+  pen[] arrayofpointpens;
+  void pushpoint(string label,pair p,pair location,pen myPen) {
+    arrayofpointnames.push("$"+label+"$");
+    arrayofpoints.push(p);
+    arrayofpointlocations.push(location);
+    arrayofpointpens.push(myPen);
+  }
+
+  //Draw Circles
+  circle[] arrayofcircles;
+  pen[] arrayofcirclepens;
+  void pushcircle(circle w,pen myPen) {
+    arrayofcircles.push(w);
+    if(cpp==SkyBlue) {cpp=DodgerBlue;}
+    else {
+      if(cpp==DodgerBlue){cpp=ForestGreen;}
+      else {
+        if(cpp==ForestGreen){cpp=BurntOrange;}
+        else {
+          if(cpp==BurntOrange){cpp=DeepPink;}
+          else {
+            if(cpp==DeepPink){cpp=SkyBlue;}
+          }
+        }
+      }
+    }
+    arrayofcirclepens.push(myPen);
+  }
+
+
+  //Draw Arcs
+  arc[] arrayofarcs;
+  pen[] arrayofarcpen;
+  void pusharc(arc c,pen myPen) {
+    arrayofarcs.push(c);
+    arrayofarcpen.push(myPen);
+  }
+
+
+  // Draw Lines
+  line[] arrayoflines;
+  pen[] arrayoflinepens;
+  void pushline(line l,pen myPen) {
+    arrayoflines.push(l);
+    arrayoflinepens.push(myPen);
+  }
+
+
+  // Draw Polygons
+  guide[] arrayofpolys;
+  pen[] arrayofpolypens;
+  void pushpoly(guide g, pen myPen) {
+    arrayofpolys.push(g);
+    arrayofpolypens.push(myPen);
+  }
+
+
+  // Draw Grid Edges
+  guide[] arrayofgridedges;
+  pen[] arrayofgridpens;
+  void pushgrid(guide g, pen myPen) {
+    arrayofgridedges.push(g);
+    arrayofgridpens.push(myPen);
+  }
+
+
+  // Draw Grid Cells
+  guide[] arrayofcells;
+  pen[] arrayofcellpens;
+  void pushcell(guide g, pen myPen) {
+    arrayofcells.push(g);
+    arrayofcellpens.push(myPen);
+  }
+
+
+  // Intersections==========================================
+  // Line Line
+  pair IN(line p, line q) {
+    return intersectionpoint(p,q);
+  }
+  pair dIN(string label="",line p, line q,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,IN(p,q),location,myPen);
+    return intersectionpoint(p,q);
+  }
+
+  // Circle Circle
+  pair IP(circle c, circle w) {
+    return intersectionpoints(c,w)[0];
+  }
+  pair dIP(string label="",circle c,circle w, pair location=SW,pen myPen=bpp) {
+    pushpoint(label,IP(c,w),location,myPen);
+    return IP(c,w);
+  }
+  pair OP(circle c, circle w) {
+    return intersectionpoints(c,w)[1];
+  }
+  pair dOP(string label="",circle c,circle w, pair location=SW,pen myPen=bpp) {
+    pushpoint(label,OP(c,w),location,myPen);
+    return OP(c,w);
+  }
+  // Circle Line
+  pair IP(line l,circle c) {
+    return intersectionpoints(c,l)[0];
+  }
+  pair dIP(string label="",line l,circle c,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,IP(l,c),location,myPen);
+    return IP(l,c);
+  }
+  pair OP(line l,circle c) {
+    return intersectionpoints(c,l)[1];
+  }
+  pair dOP(string label="",line l,circle c,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,OP(l,c),location,myPen);
+    return OP(l,c);
+  }
+  // Arc Line 
+  pair IP(line l,arc c) {
+    return intersectionpoints(c,l)[0];
+  }
+  pair dIP(string label="",line l,arc c,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,IP(l,c),location,myPen);
+    return IP(l,c);
+  }
+  pair OP(line l,arc c) {
+    return intersectionpoints(c,l)[1];
+  }
+  pair dOP(string label="",line l,arc c,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,OP(l,c),location,myPen);
+    return OP(l,c);
+  }
+  // Arc Circle
+  pair IP(arc c, circle w) {
+    return intersectionpoints(c,w)[0];
+  }
+  pair dIP(string label="",arc c,circle w, pair location=SW,pen myPen=bpp) {
+    pushpoint(label,IP(c,w),location,myPen);
+    return IP(c,w);
+  }
+  pair OP(arc c, circle w) {
+    return intersectionpoints(c,w)[1];
+  }
+  pair dOP(string label="",arc c,circle w, pair location=SW,pen myPen=bpp) {
+    pushpoint(label,OP(c,w),location,myPen);
+    return OP(c,w);
+  }
+
+
+
+
+  // Points=================================================
+  pair P(real x, real y=1) {
+    pair p = y*dir(x);
+    return p;
+  }
+  pair DP(string label="", real x, real y=1, pair location=y*dir(x),pen myPen=bpp) {
+    pair p = P(x,y);
+    pushpoint(label,p,location,myPen);
+    return p;
+  }
+  pair dotP(string label="",pair p,pen myPen=bpp,pair location=SW) {
+    pushpoint(label,p,location,myPen);
+    return p;
+  }
+
+
+  // Lines==================================================
+  line l(pair A,pair B) {
+    return line(A,B);
+  }
+  segment s(pair A,pair B) {
+    return segment(A,B);
+  }
+  line dl(pair A,pair B,pen myPen=lpp) {
+    pushline(l(A,B),myPen);
+    return l(A,B);
+  }
+  segment ds(pair A,pair B,pen myPen=lpp) {
+    pushline(s(A,B),myPen);
+    return s(A,B);
+  }
+
+
+
+  //Polygons
+  triangle tri(pair A,pair B,pair C) {
+    return triangle(A,B,C);
+  }
+  line[] poly(pen myPen=lpp ... pair[] P) {
+    line[] segments = {};
+    guide g = P[0];
+    for(int i = 0; i < P.length; ++i) {
+      if(i != P.length-1) {
+        segments.push(s(P[i],P[i+1]));
+      } else {
+        segments.push(s(P[i],P[0]));
+      }
+      if (i >= 1) {
+        g=g--P[i];
+      }
+    }
+    g=g--cycle;
+    pushpoly(g,myPen);
+    return segments;
+  }
+
+
+  // Circles================================================
+  circle c(triangle s) {
+    return circle(s);
+  }
+  circle dc(triangle s,pen border=cpp) {
+    pushcircle(c(s),border);
+    return c(s);
+  }
+  circle c(pair A, pair B) {
+    return circle(A,B);
+  }
+  circle dc(pair A, pair B,pen border=cpp) {
+    pushcircle(c(A,B),border);
+    return c(A,B);
+  }
+  circle CP(pair O, pair P) {
+    pair X = (abs(P-O)*4/5,abs(P-O)*3/5);
+    return c(O+X,O-X);
+  }
+  circle dCP(pair O, pair P,pen border=cpp) {
+    pushcircle(CP(O,P),border);
+    return CP(O,P);
+  }
+  circle c(pair A, pair B, pair C) {
+    return circle(A,B,C);
+  }
+  circle dc(pair A, pair B, pair C,pen border=cpp) {
+    pushcircle(c(A,B,C),border);
+    return c(A,B,C);
+  }
+  arc sc(pair A,pair B) {
+    return arcsubtended(A,B,90);
+  }
+  arc dsc(pair A,pair B,pen border=cpp) {
+    pusharc(sc(A,B),border);
+    return sc(A,B);
+  }
+
+
+  // Midpoints==============================================
+  pair center(pair A,pair B,pair C) {
+    return c(A,B,C).C;
+  }
+  pair dcenter(string label="",pair A,pair B,pair C,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,center(A,B,C),location,myPen);
+    return center(A,B,C);
+  }
+  pair mid(pair A, pair B) {
+    return (A+B)/2;
+  }
+  pair dmid(string label = "",pair A, pair B,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,(A+B)/2,location,myPen);
+    return (A+B)/2;
+  }
+
+
+
+  //Perpendiculars==========================================
+  line perp(pair P, line l) {
+    return perpendicular(P,l);
+  }
+  line dperp(pair P, line l,pen myPen=lpp) {
+    pushline(perp(P,l),myPen);
+    return perp(P,l);
+  }
+  line perp(pair P, pair B, pair C) {
+    return perp(P,l(B,C));
+  }
+  line dperp(pair P, pair B, pair C,pen myPen=lpp) {
+    pushline(perp(P,B,C),myPen);
+    return perp(P,B,C);
+  }
+  pair foot(pair P, pair A, pair B) {
+    return foot(triangle(A,B,P).VC);
+  }
+  pair dfoot(string label="",pair P, pair A, pair B,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,foot(P,A,B),location,myPen);
+    return foot(P,A,B);
+  }
+  pair foot(pair P, line l) {
+    point X = IN(perp(P,l),l);
+    return X;
+  }
+  pair dfoot(string label="",pair P, line l,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,foot(P,l),location,myPen);
+    return foot(P,l);
+  }
+  line alt(pair P, pair B, pair C) {
+    return altitude(triangle(P,B,C).VA);
+  }
+  line dalt(pair P, pair B, pair C,pen myPen=lpp) {
+    pushline(alt(P,B,C),myPen);
+    return alt(P,B,C);
+  }
+  line alt(pair P, line l) {
+    point X = foot(P,l);
+    return s(P,X);
+  }
+  line dalt(pair P, line l,pen myPen=lpp) {
+    pushline(alt(P,l),myPen);
+    return alt(P,l);
+  }
+
+
+
+  // Perpendicular Bisector=================================
+  line pb(pair A,pair B) {
+    return bisector(s(A,B));
+  }
+  line dpb(pair A,pair B,pen myPen=lpp) {
+    pushline(pb(A,B),myPen);
+    return pb(A,B);
+  }
+  line pb(segment s) {
+    return bisector(s);
+  }
+  line dpb(segment s,pen myPen=lpp) {
+    pushline(pb(s),myPen);
+    return pb(s);
+  }
+
+  // Parallel===============================================
+  line par(pair P, line s) {
+    return parallel(P, s);
+  }
+  line dpar(pair P, line s,pen myPen=lpp) {
+    pushline(par(P,s),myPen);
+    return par(P,s);
+  }
+  line par(pair P, pair B, pair C) {
+    return par(P, l(B,C));
+  }
+  line dpar(pair P, pair B, pair C,pen myPen=lpp) {
+    pushline(par(P,B,C),myPen);
+    return par(P,B,C);
+  }
+
+
+
+  // Tangents: Needs to be edited
+  line tgX(pair P, circle c) {
+    return tangents(c,P)[0];
+  }
+  line dtgX(pair P, circle c,pen myPen=lpp) {
+    pair X = dIP(tgX(P,c),c);
+    ds(P,X,myPen);
+    return tgX(P,c);
+  }
+  line tgY(pair P, circle c) {
+    return tangents(c,P)[1];
+  }
+  line dtgY(pair P, circle c,pen myPen=lpp) {
+    pair X = dIP(tgY(P,c),c);
+    ds(P,X,myPen);
+    return tgY(P,c);
+  }
+  line t(pair P, circle c) {
+    return tangent(c,P);
+  }
+  line dt(pair P, circle c,pen myPen=lpp) {
+    pushline(t(P,c),myPen);
+    return t(P,c);
+  }
+
+
+
+  // Special Points=========================================
+  // Tangency touch point symmedian
+  pair sym(pair A,pair P, pair B) {
+    return IN(t(A,c(P,A,B)),t(B,c(P,A,B)));
+  }
+  pair dsym(string label="",pair A,pair P, pair B,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,sym(A,P,B),location,myPen);
+    return sym(A,P,B);
+  }
+  // Orthocenter shortcut
+  point orth(pair A,pair B,pair C) {
+    return orthocenter(tri(A,B,C));
+  }
+  point dorth(string label="",pair A,pair B,pair C,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,orth(A,B,C),location,myPen);
+    return orth(A,B,C);
+  }
+  // Incenter
+  point in(pair A, pair B, pair C) {
+    return incenter(tri(A,B,C));
+  }
+  point din(string label="",pair A, pair B, pair C,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,in(A,B,C),location,myPen);
+    return incenter(tri(A,B,C));
+  }
+  // Excenter
+  point ex(pair B, pair A, pair C) {
+    return excenter(tri(B,A,C).AC);
+  }
+  point dex(string label="",pair B, pair A, pair C,pair location=SW,pen myPen=defaultpen) {
+    pushpoint(label,ex(B,A,C),location,myPen);
+    return ex(B,A,C);
+  }
+  // centroid
+  point centroid(pair A,pair B,pair C) {
+    return (A+B+C)/3;
+  }
+  point dcentroid(string label="",pair A,pair B,pair C,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,(A+B+C)/3,location,myPen);
+    return (A+B+C)/3;
+  }
+  // Incircle Tangency points
+  point tin(pair B,pair A,pair C) {
+    return foot(in(A,B,C),B,C);
+  }
+  point dtin(string label="",pair A,pair B,pair C,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,tin(A,B,C),location,myPen);
+    return tin(A,B,C);
+  }
+  // Excircle Tangency points
+  point tex(pair B,pair A,pair C) {
+    return foot(ex(B,A,C),B,C);
+  }
+  point dtex(string label="",pair B,pair A,pair C,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,tex(B,A,C),location,myPen);
+    return tex(B,A,C);
+  }
+
+
+
+
+  // Special Lines==========================================
+  // Angle bisectors
+  line ib(pair B, pair A, pair C) {
+    return l(A,in(A,B,C));
+  }
+  line dib(pair B, pair A, pair C,pen myPen=defaultpen) {
+    pushline(ib(B,A,C),myPen);
+    return ib(B,A,C);
+  }
+  line eb(pair B, pair A, pair C) {
+    return l(A,ex(A,B,C));
+  }
+  line deb(pair B, pair A, pair C,pen myPen=defaultpen) {
+    pushline(deb(B,A,C),myPen);
+    return deb(B,A,C);
+  }
+
+
+
+
+
+
+  line euler(pair A,pair B,pair C) {
+    return l(center(A,B,C), orth(A,B,C));
+  }
+  line deuler(pair A,pair B,pair C,pen myPen=defaultpen) {
+    pushline(euler(A,B,C),myPen);
+    return euler(A,B,C);
+  }
+
+
+  // Other Special Points===================================
+
+  pair arcm(pair B, pair A, pair C, bool direction=true) {
+    if (direction==true) {
+      return IN(eb(B,A,C),pb(B,C));
+    } else {
+      return IN(ib(B,A,C),pb(B,C));
+    }
+  }
+  pair darcm(string label="",pair B, pair A, pair C, bool direction=true,pair location=SW,pen myPen=bpp) {
+    pushpoint(label,arcm(B,A,C,direction),location,myPen);
+    return arcm(B,A,C,direction);
+  }
+
+
+
+
+  // Mark angles============================================
+
+  void ma(string label="", pair A, pair O, pair B,real radius=0.5cm,pen myPen = black) {
+    markangle("$" + label + "$",A,O,B,radius = radius,myPen);
+  }
+  void rma(pair A, pair O, pair B) {
+    markrightangle(A,O,B);
+  }
+
+
+
+  // ======================================================================================== \\
+  // ====================================GRIDS=============================================== \\
+  // ======================================================================================== \\
+
+
+
+  pair[] grid(pair End=(8,8),pair Start=(0,0)) {
+    for(real i = Start.x+1; i < End.x; ++i) {
+      ds((i,Start.y),(i,End.y));
+    }
+    for(real i = Start.y+1; i < End.y; ++i) {
+      ds((Start.x,i),(End.x,i));
+    }
+    pushgrid(Start--(Start.x,End.y)--End--(End.x,Start.y)--cycle,lpp);
+    pair[] Region = {Start,End};
+    return Region;
+  }
+
+  pair dcell(pair[] region, real x, real y,pen myPen=lpp) {
+    pair Start=(region[0].x+x-1,region[1].y-y+1);
+    pair End=(region[0].x+x,region[1].y-y);
+    pushcell(Start--(Start.x, End.y)--End--(End.x,Start.y)--cycle,myPen);
+    return mid(Start,End);
+  }
+
+  pair cell(pair[] region, real x, real y) {
+    pair Start=(region[0].x+x-1,region[1].y-y+1);
+    pair End=(region[0].x+x,region[1].y-y);
+    return mid(Start,End);
+  }
+
+
+
+
+  // DRAW_EVERYTHING========================================
+
+  void drawEverything() {
+    // Draw Cells
+    for(int i = 0; i < arrayofcells.length; ++i) {
+      filldraw(arrayofcells[i],arrayofcellpens[i],lpp+opacity(0));
+    }
+    // Draw Grids
+    for(int i = 0; i < arrayofgridedges.length; ++i) {
+      draw(arrayofgridedges[i],arrayofgridpens[i]);
+    }
+    // Draw Circles
+    for(int i = 0;i<arrayofcircles.length;++i) {
+      if(arrayofcirclepens[i]==defaultpen) {
+        filldraw(arrayofcircles[i],arrayofcirclepens[i]+opacity(0.05),arrayofcirclepens[i]);
+      } else {
+        filldraw(arrayofcircles[i],arrayofcirclepens[i]+opacity(0.05),arrayofcirclepens[i]);
+      }
+    }
+    // Draw Polygons
+    for(int i = 0; i < arrayofpolys.length; ++i) {
+      filldraw(arrayofpolys[i],arrayofpolypens[i]+opacity(0.05),arrayofpolypens[i]);
+    }
+    // Draw Arcs
+    for(int i = 0;i<arrayofarcs.length;++i) {
+      draw(arrayofarcs[i],arrayofarcpen[i]);
+    }
+    // Draw Lines
+    for(int i = 0;i<arrayoflines.length;++i){
+      draw(arrayoflines[i],arrayoflinepens[i]);
+    }
+    // Draw Points
+    for(int i = 0;i<arrayofpoints.length;++i) {
+      dot(arrayofpointnames[i],arrayofpoints[i],arrayofpointlocations[i],arrayofpointpens[i]);
+    }
+  }
+
+
+
+\end{asydef}

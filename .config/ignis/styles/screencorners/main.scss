@@ -1,0 +1,11 @@
+.roundcorners {
+  background: transparent;
+  // box-shadow: 
+      // 0 0 0 20px #111, /* Base shadow color to create the round effect */
+      // 0 0 20px 20px rgba(0, 0, 0, 0.1); /* Shadow blur to create soft edges */
+
+  box-shadow: 
+      0 0 0 20px #111, /* Base shadow color to create the round effect */
+      0 0 20px 20px $surface; /* Shadow blur to create soft edges */
+  border-radius: 25px; 
+}

@@ -1,0 +1,24 @@
+@use 'sass:color';
+@use 'sass:math';
+
+@function make-gradient($color1, $color2, $steps, $divisions) {
+  $gradient: "";
+  $mix-difference: math.div(100 , ($divisions - 1)); // Difference in mix percentage for each step
+  $step-percentage: math.div(100 , $steps);         // Step percentage for dividing the gradient evenly
+
+  @for $i from 0 through $steps - 1 {
+    // Calculate the start and end percentages
+    $start-position: $i * $step-percentage * 1%;
+    $end-position: ($i + 1) * $step-percentage * 1%;
+
+    // Calculate the mix percentage for the color
+    $mix-percentage: 100 - ($i * $mix-difference);
+
+    // Append the color stops to the gradient string
+    $gradient: #{$gradient},
+               color.mix($color1, $color2, $mix-percentage * 1%) #{$start-position}, 
+               color.mix($color1, $color2, $mix-percentage * 1%) #{$end-position};
+  }
+
+  @return $gradient;
+}

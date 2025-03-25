@@ -1,0 +1,84 @@
+
+.MediaContainer {
+  min-height: 135px;
+  padding: 10px;
+  .MediaTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+
+  .player-availability {
+    font-size: 18px;
+  }
+
+
+
+
+
+  // Player
+  .player-container {
+    background: $surfaceContainer;
+    border: 1px solid $surfaceContainerHigh;
+    padding: 8px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 5px;
+    }
+
+
+
+
+    .player-coverpage {
+      border-radius: 10px;
+      margin-right: 8px;
+      box-shadow: 0px 0px 5px 2px #0005 inset;
+    }
+
+
+    .player-title {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .player-artist {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .player-app-icon {
+      padding: 2px;
+    }
+
+
+    .player-control-button {
+      background: $surfaceContainerHighest;
+      border-radius: 3px;
+      padding: 3px;
+      margin: 2px;
+      &.disabled {
+        color: red;
+      }
+    }
+
+
+
+    .player-time {
+      font-size: 12px;
+    }
+
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

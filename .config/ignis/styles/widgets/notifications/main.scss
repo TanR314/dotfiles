@@ -1,0 +1,55 @@
+.NotificationBox {
+  background: $surfaceContainerLow;
+  padding: 12px 12px;
+  border-radius: 15px;
+  .NotificationsTitle {
+    font-size: 20px;
+  }
+
+  .NotificationBoxTop {
+    margin-bottom: 8px;
+  }
+
+  .NotificationsContainerPlaceHolder {
+    min-width: 350px;
+    min-height: 400px;
+    font-size: 24px;
+    // background: red;
+  }
+
+}
+
+.NotificationWidget {
+  background: $surfaceContainer;
+  border-radius: 15px;
+  padding: 8px;
+  margin-bottom: 8px;
+  &:last-child {
+    margin-bottom: 8px;
+  }
+  border: 1px solid $surfaceContainerHigh;
+  .NotificationIcon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+
+  .NotificationDescriptionBox {
+    .NotificationSummary {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+  }
+  .NotificationActionBox {
+    margin-top: 3px;
+    .NotificationAction {
+      background: $surfaceContainerHigh;
+      padding: 5px;
+      margin-right: 3px;
+      border-radius: 6px;
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}

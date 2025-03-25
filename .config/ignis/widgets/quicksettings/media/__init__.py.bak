@@ -1,0 +1,54 @@
+
+from .player_widget import MyPlayer
+
+
+class Popup(Widget.Box):
+    def __init__(self, player):
+        self.revealer = Widget.Revealer(
+            child=MyPlayer(player),
+            reveal_child=False
+        )
+
+        super().__init__(
+            halign="center",
+            child=[
+                self.revealer
+            ],
+            setup=lambda self:
+                player.connect("closed", lambda x: self.destroy())
+        )
+
+    def destroy(self):
+
+        self.revealer.reveal_child = False
+        Utils.Timeout(self.revealer.transition_duration, lambda: self.unparent())
+
+
+
+
+
+
+
+class MediaPlayer(Widget.Box):
+    def __init__(self):
+        self.label = Widget.Label(
+            label="No Player Is Being Played",
+            visible = mpris.bind("players", lambda x: False if len(x) else True),
+            valign="center",
+            vexpand=True,
+            css_classes=["player-availability"]
+        )
+        mpris.connect("player_added", self.onPlayerAdded)
+        super().__init__(
+            css_classes=["MediaContainer", "quicksettings-container"],
+            vertical=True,
+            child=[
+                Widget.Label(label="Media",css_classes=["MediaTitle"], halign="start"),
+                self.label
+            ]
+        )
+    def onPlayerAdded(self, x, player):
+        popup=Popup(player)
+        self.append(popup)
+        popup.revealer.reveal_child=True
+

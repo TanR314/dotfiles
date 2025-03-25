@@ -1,0 +1,352 @@
+%--------------------Page Layouts--------------------%
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.3in}
+\setlength{\textheight}{9in}
+\setlength{\headwidth}{6.3in}
+\setlength{\voffset}{-0.5in}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\setlength{\hoffset}{-3pt}
+\usepackage{layout}
+%--------------------------x-------------------------%
+
+
+
+
+
+
+
+
+
+%--------------------Fancy Headers-------------------%
+\makepagestyle{mystyle}
+% \makeevenhead{mystyle}{}{}{\thepage}
+\renewcommand{\sectionmark}[1]{\markright{\sffamily\emph{\thesection\  #1}}}
+% \makeoddhead{mystyle}{\rightmark}{}{\thepage}
+\makeoddhead{mystyle}{\thepage}{}{{\sffamily\leftmark}}
+\makeevenhead{mystyle}{\sffamily\leftmark}{}{\thepage}
+\makeevenfoot{mystyle}{}{}{}
+\makeoddfoot{mystyle}{}{}{}
+\makepsmarks{mystyle}{%
+  \createmark{chapter}{left}{nonumber}{}{}}
+
+\newcommand{\headrule}{\color{gray!50}\rule{\textwidth}{0.5pt}}
+\makeheadrule{mystyle}{\textwidth}{1pt}
+\pagestyle{mystyle}
+%--------------------------x-------------------------%
+
+
+
+
+
+
+
+
+%---------------------Fancy Titles--------------------%
+% chapter styling
+\makechapterstyle{mychapter}{%
+  \renewcommand{\chapnumfont}{\normalfont\Huge\bfseries\sffamily}
+  \renewcommand{\printchaptername}{\chapnumfont \@chapapp}
+  \renewcommand{\printchapternum}{\chapnumfont \thechapter}
+  \renewcommand\printchaptertitle{\chapnumfont}
+}
+\chapterstyle{mychapter}
+% \setsecindent{}
+
+
+% section styling
+\setsecheadstyle{\bfseries\sffamily\LARGE}
+
+\setsecnumformat{\thesection\ }
+
+% fancy maketitles
+\newcommand{\country}[1]{\def\mycountry{#1}}
+\newcommand{\user}[1]{\def\myuserid{#1}}
+\renewcommand{\maketitle}{%
+  \begin{center}
+  \vspace*{22.5pt}
+  {\huge\sffamily\textbf{\thetitle}}\\
+  \vspace*{17.5pt}
+  \ifx\theauthor\undefined
+  \else
+    {\Large\theauthor}\par
+  \fi
+  \ifx\myuserid\undefined
+  \else
+    {\Large Aops Username: \myuserid}\par
+  \fi
+  \ifx\mycountry\undefined
+  \else
+    {\Large Country: \mycountry}\par
+  \fi
+  \ifx\thedate\undefined
+  \else
+    \par\large\thedate\par
+  \fi
+  \vspace*{17.5pt}
+  \end{center}
+}
+
+
+%--------------------------x--------------------------%
+
+
+
+
+
+
+
+%--------------------------colors------------------------
+\usepackage[svgnames,dvipsnames,table]{xcolor}
+%-----------------------------x--------------------------
+
+
+
+
+
+
+% -----------------------Links-------------------------
+\usepackage[colorlinks=true,pdfusetitle]{hyperref}
+% \usepackage{hyperref}
+% \hypersetup{pdfkeywords={evan.sty},pdfsubject={web.evanchen.cc}}
+\hypersetup{urlcolor=RoyalPurple,linkcolor=RoyalBlue,citecolor=ForestGreen}
+%-------------------------x----------------------------
+
+
+
+
+
+
+
+
+
+%--------------------Foot Notes--------------------% 
+\usepackage{footnote}
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{tcolorbox}{\savenotes}
+\AfterEndEnvironment{tcolorbox}{\spewnotes}
+%------------------------x-------------------------% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------- MATHS ---------------------- %
+\usepackage{amsmath,amssymb}
+
+% Inequalities
+\newcommand{\cycsum}{\sum_{\mathrm{cyc}}}
+\newcommand{\symsum}{\sum_{\mathrm{sym}}}
+\newcommand{\cycprod}{\prod_{\mathrm{cyc}}}
+\newcommand{\symprod}{\prod_{\mathrm{sym}}}
+\newcommand{\p}[1]{\left( #1 \right)}
+
+
+% FUnctional Inequalities
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+
+
+
+%From Kiran Kedlaya's "Geometry Unbound"
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\dang}{\measuredangle} %% Directed angle
+\newcommand{\ray}[1]{\overrightarrow{#1}}
+\newcommand{\seg}[1]{\overline{#1}}
+
+
+
+%From M275 "Topology" at SJSU
+\DeclareMathOperator{\id}{id}
+\newcommand{\taking}[1]{\xrightarrow{#1}}
+\newcommand{\inv}{^{-1}}
+
+
+
+
+
+% \newcommand{\defeq}{\overset{\mathrm{def}}{=}} I won't use it
+
+\newcommand{\ts}{\textsuperscript}
+\newcommand{\dg}{^\circ}
+\newcommand{\ii}{\item}
+
+
+
+
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\lthen}{\rightarrow}
+
+
+% Geometry Tools
+\newcommand{\pow}[2]{
+  \text{Pow}_{#1}(#2)
+}
+
+
+
+% Number Theory
+\renewcommand{\pmod}[1]{
+  \p{\text{mod}\ #1}
+}
+
+\newcommand{\floor}[1]{
+  \left\lfloor #1 \right\rfloor
+}
+
+\newcommand{\ceil}[1]{
+  \left\lceil #1 \right\rceil
+}
+%--------------------------x----------------------------%
+
+
+
+
+
+
+
+
+
+%------------------------lists-----------------------%
+\usepackage{enumerate}
+
+% --- Required for itemize ---, Otherwise it gives error about tcrm1095 font
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%--------------------------x-------------------------%
+
+
+
+
+
+
+
+
+
+%--------------------Basic Editing------------------%
+\newcommand{\enquote}[1]{``#1''}
+\newcommand{\nth}[1]{\text{$#1$th}}
+% \newcommand{\key}[1]{\textbf{\sffamily\color{SteelBlue!75!black}{#1}}}
+% Useful to create commands and environments with optional arguments
+\usepackage{xparse}
+%-------------------------x-------------------------%
+
+
+
+
+
+%-------------------Fancy Boxes--------------------%
+\usepackage{amsthm,thmtools}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,theorems,listings,breakable}
+
+
+\tcbset{
+  enhanced jigsaw,
+  arc=6pt,
+  left=9pt,
+  after skip=15pt,
+  before skip=15pt,
+}
+
+\newcommand{\tcbthmstyle}[4]{
+  \declaretheoremstyle[
+    headfont=#3\bfseries\color{#2},
+    headpunct={\\[3pt]},
+    #4
+  ]{#1}
+}
+
+\newcommand{\tcbtheorem}[6]{
+  \theoremstyle{#6}
+  \declaretheorem[style=#6,name=#2,#3]{#1}
+  \declaretheorem[style=#6,name=#2,numbered=no,#3]{#1*}
+  \tcolorboxenvironment{#1}{
+    colback=#4!5,colframe=#5,
+  }
+  \tcolorboxenvironment{#1*}{
+    colback=#4!5,colframe=#5
+  }
+}
+
+\newcommand{\tcblefttheorem}[6]{
+  \theoremstyle{#6}
+  \declaretheorem[style=#6,name=#2,#3]{#1}
+  \declaretheorem[style=#6,name=#2,numbered=no,#3]{#1*}
+  \tcolorboxenvironment{#1}{
+    colback=#4!5,
+    frame hidden,
+    boxrule=0pt,
+    left=10pt,
+    overlay={\path[fill=#5] 
+      ([xshift=10pt]frame.north west) to[out=180, in=90] 
+      ([xshift=4pt, yshift=-6pt]frame.north west) --
+      ([xshift=4pt, yshift=6pt]frame.south west) to[out=-90, in=180]
+      ([xshift=10pt]frame.south west) --
+      ([xshift=6pt]frame.south west) to[out=180, in=-90]
+      ([yshift=6pt]frame.south west) --
+      ([yshift=-6pt]frame.north west) to[out=90, in=180]
+      ([xshift=6pt]frame.north west) --
+      ([xshift=10pt]frame.north west)
+      ;}
+  }
+  \tcolorboxenvironment{#1*}{
+    colback=#4!5,
+    frame hidden,
+    boxrule=0pt,
+    left=10pt,
+    overlay={\path[fill=#5] 
+      ([xshift=10pt]frame.north west) to[out=180, in=90] 
+      ([xshift=4pt, yshift=-6pt]frame.north west) --
+      ([xshift=4pt, yshift=6pt]frame.south west) to[out=-90, in=180]
+      ([xshift=10pt]frame.south west) --
+      ([xshift=6pt]frame.south west) to[out=180, in=-90]
+      ([yshift=6pt]frame.south west) --
+      ([yshift=-6pt]frame.north west) to[out=90, in=180]
+      ([xshift=6pt]frame.north west) --
+      ([xshift=10pt]frame.north west)
+      ;}
+  }
+}
+%------------------------x-------------------------%
+
+
+
+
+%-----------------------Appendix-------------------------%
+% \usepackage{appendix}
+% \usepackage{environ}
+% source: https://tex.stackexchange.com/questions/372172/command-to-add-to-the-appendix
+% \newtoks\appendixtabletoks
+%
+% \NewEnviron{appendixtable}{%
+%   \edef\temp{%
+%     \noexpand\begin{table}[hp]
+%     \unexpanded\expandafter{\BODY}
+%     \noexpand\end{table}
+%   }%
+%   \global\appendixtabletoks=\expandafter{%
+%     \the\expandafter\appendixtabletoks\temp
+%   }
+% }
+% Source Ends
+%----------------------------x---------------------------%
+
+
+
+\usepackage{geodiagram}
+
+

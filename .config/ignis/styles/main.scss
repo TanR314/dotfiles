@@ -1,0 +1,44 @@
+* {
+  all: unset;
+  font-family: "Rubik";
+  // font-family: "Gabarito";
+  // font-family: "Noto Sans"
+}
+
+
+
+
+
+
+@import "./material/colors.scss";
+//
+@import "./widgets/common.scss";
+//
+//
+//
+//
+//
+//
+//
+@import "./widgets/bar/main.scss";
+
+
+
+
+@import "./widgets/notifications/main.scss";
+
+
+
+@import "./screencorners/main.scss";
+
+
+
+@import "./widgets/quicksettings/main.scss";
+
+
+
+
+@import "./widgets/overview/main.scss";
+
+
+@import "./widgets/searchbox/main.scss";
