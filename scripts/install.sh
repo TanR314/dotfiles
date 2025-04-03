@@ -20,7 +20,7 @@ sudo pacman -S --needed vscodium neovim tree-sitter-cli nodejs wl-clipboard
 
 # Apps
 sudo pacman -S --needed telegram-desktop ayugram-desktop zathura zathura-pdf-mupdf
-sudo pacman -S --needed ghostty zen-browser-bin
+sudo pacman -S --needed ghostty zen-browser-bin brave-bin discord
 
 
 
@@ -31,3 +31,18 @@ sudo pacman -S --needed bluez bluez-utils bluez-deprecated-tools blueman
 
 # Dotfiles Manager
 sudo pacman -S --needed stow
+
+
+# Input Method Setup
+sudo pacman -S --needed fcitx5-im
+# yay -S --needed ibus-openbangla-git
+# yay -S --needed fcitx5-openbangla-git
+
+
+# Package Managing
+sudo pacman -S --needed downgrade
+
+
+
+# Night Light
+sudo pacman -S --needed gammastep

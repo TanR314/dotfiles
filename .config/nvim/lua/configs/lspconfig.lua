@@ -17,6 +17,12 @@ for _, lsp in ipairs(servers) do
 end
 
 
+
+
+require("lspconfig").qmlls.setup {
+  cmd = {"qmlls6", "-E"}
+}
+
 -- configuring single server, example: typescript
 -- lspconfig.ccls.setup {
 --   on_attach = nvlsp.on_attach,
