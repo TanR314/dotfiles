@@ -46,3 +46,8 @@ sudo pacman -S --needed downgrade
 
 # Night Light
 sudo pacman -S --needed gammastep
+
+
+
+# Cli Tools
+sudo pacman -S --needed btop tree fzf ranger

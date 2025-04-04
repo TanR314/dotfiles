@@ -83,11 +83,11 @@ end
 
 
 
-map("n", "<leader>bi", function() Run("preInput", "editInput") end, { desc = "Edit Inputs" })
-map("n", "<leader>br", function() Run("preInput", "Run") end, { desc = "PreInput Run" })
-map("n", "<leader>bb", function() Run("preInput", "BuildRun") end, { desc = "PreInput Build and Run" })
-map("n", "<C-b>", function() Run("execute", "BuildRun") end, { desc = "Build and Run" })
-map("n", "<F5>", function() Run("execute", "Run") end, { desc = "Run" })
+map("n", "<leader>bi", function() Run("preInput", "editInput") end, { desc = "IDE Edit Inputs" })
+map("n", "<leader>br", function() Run("preInput", "Run") end, { desc = "IDE PreInput Run" })
+map("n", "<leader>bb", function() Run("preInput", "BuildRun") end, { desc = "IDE PreInput Build and Run" })
+map("n", "<C-b>", function() Run("execute", "BuildRun") end, { desc = "IDE Build and Run" })
+map("n", "<F5>", function() Run("execute", "Run") end, { desc = "IDE Run" })
 
 
 
