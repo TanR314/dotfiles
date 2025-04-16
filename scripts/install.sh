@@ -20,7 +20,7 @@ sudo pacman -S --needed vscodium neovim tree-sitter-cli nodejs wl-clipboard
 
 # Apps
 sudo pacman -S --needed telegram-desktop ayugram-desktop zathura zathura-pdf-mupdf
-sudo pacman -S --needed ghostty zen-browser-bin brave-bin discord
+sudo pacman -S --needed ghostty zen-browser-bin brave-bin chromium discord
 
 
 
