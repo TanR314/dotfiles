@@ -20,7 +20,7 @@ sudo pacman -S --needed vscodium neovim tree-sitter-cli nodejs wl-clipboard
 
 # Apps
 sudo pacman -S --needed telegram-desktop ayugram-desktop zathura zathura-pdf-mupdf
-sudo pacman -S --needed ghostty zen-browser-bin brave-bin chromium discord
+sudo pacman -S --needed ghostty kitty foot zen-browser-bin brave-bin chromium discord
 
 
 
@@ -51,3 +51,8 @@ sudo pacman -S --needed gammastep
 
 # Cli Tools
 sudo pacman -S --needed btop tree fzf ranger
+
+
+
+# Fonts
+sudo pacman -S --needed ttf-jetbrains-mono-nerd
