@@ -1,4 +1,5 @@
 from ignis.widgets import Widget
+from ignis.utils import Utils
 # def MyPlayer(player: M):
 from gi.repository import Gio
 
@@ -12,14 +13,19 @@ class MyPlayer(Widget.Box):
 
         if player.desktop_entry:
             try:
-                if not player.desktop_entry == "spotify":
-                    self._app_icon = Gio.DesktopAppInfo.new(player.desktop_entry + ".desktop").get_icon()
-                    self.app_icon = self._app_icon.to_string()
-                else:
-                    self._app_icon = Gio.DesktopAppInfo.new("spotify-launcher" + ".desktop").get_icon()
-                    self.app_icon = self._app_icon.to_string()
+                self.app_icon = Utils.get_app_icon_name(player.desktop_entry)
             except:
                 print("OMG")
+
+            # try:
+            #     if not player.desktop_entry == "spotify":
+            #         self._app_icon = Gio.DesktopAppInfo.new(player.desktop_entry + ".desktop").get_icon()
+            #         self.app_icon = self._app_icon.to_string()
+            #     else:
+            #         self._app_icon = Gio.DesktopAppInfo.new("spotify-launcher" + ".desktop").get_icon()
+            #         self.app_icon = self._app_icon.to_string()
+            # except:
+            #     print("OMG")
                 # self.app_icon = self._app_icon.to_string()
         else:
             self.app_icon = "telegram"
