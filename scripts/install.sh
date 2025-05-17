@@ -56,3 +56,12 @@ sudo pacman -S --needed btop tree fzf ranger
 
 # Fonts
 sudo pacman -S --needed ttf-jetbrains-mono-nerd
+
+
+# Printers
+sudo pacman -S --needed cups libcups ghostscript gsfonts
+sudo pacman -S --needed system-config-printer
+
+yay -S --needed capt-src
+
+
