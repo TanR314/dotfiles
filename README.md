@@ -1,4 +1,4 @@
-This is my CachyOS dotfiles. It is still in development
+# This is my CachyOS dotfiles. It is still in development
 
 
 
