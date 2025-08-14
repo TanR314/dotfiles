@@ -1,4 +1,5 @@
 sudo pacman -Sy
+sudo pacman -S --needed yay
 
 
 
@@ -62,6 +63,6 @@ sudo pacman -S --needed ttf-jetbrains-mono-nerd
 sudo pacman -S --needed cups libcups ghostscript gsfonts
 sudo pacman -S --needed system-config-printer
 
-yay -S --needed capt-src
+# yay -S --needed capt-src
 
 
