@@ -65,4 +65,7 @@ sudo pacman -S --needed system-config-printer
 
 # yay -S --needed capt-src
 
-
+#texlive instllation will be added soon
+#Add /home/tanr/texlive/2025/texmf-dist/doc/man to MANPATH.
+#Add /home/tanr/texlive/2025/texmf-dist/doc/info to INFOPATH.
+sudo pacman -S --needed libreoffice-fresh
