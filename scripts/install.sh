@@ -69,3 +69,8 @@ sudo pacman -S --needed system-config-printer
 #Add /home/tanr/texlive/2025/texmf-dist/doc/man to MANPATH.
 #Add /home/tanr/texlive/2025/texmf-dist/doc/info to INFOPATH.
 sudo pacman -S --needed libreoffice-fresh
+
+
+
+# THEME
+sudo pacman -S --needed adw-gtk-theme
