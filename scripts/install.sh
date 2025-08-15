@@ -38,6 +38,7 @@ sudo pacman -S --needed stow
 sudo pacman -S --needed fcitx5-im
 # yay -S --needed ibus-openbangla-git
 yay -S --needed fcitx5-openbangla-git
+yay -S --needed fcitx5-mellow-themes-git
 
 
 # Package Managing
