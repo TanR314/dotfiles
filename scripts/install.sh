@@ -37,7 +37,7 @@ sudo pacman -S --needed stow
 # Input Method Setup
 sudo pacman -S --needed fcitx5-im
 # yay -S --needed ibus-openbangla-git
-# yay -S --needed fcitx5-openbangla-git
+yay -S --needed fcitx5-openbangla-git
 
 
 # Package Managing
